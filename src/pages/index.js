@@ -4,6 +4,7 @@ import lerp from "lerp"
 import { Canvas, useFrame } from "react-three-fiber"
 import { Block, useBlock } from "./components/blocks"
 import state from "./data/store"
+import Layout from "./components/layout"
 
 function Plane({ color = "white", ...props }) {
   return (
@@ -55,7 +56,7 @@ export default function App() {
   const onScroll = (e) => (state.top.current = e.target.scrollTop)
   useEffect(() => void onScroll({ target: scrollArea.current }), [])
   return (
-    <Container>
+    <Layout>
       <Canvas colorManagement={false} orthographic camera={{ zoom: state.zoom, position: [0, 0, 500] }}>
         {/* First section */}
         <Block factor={1.5} offset={0}>
@@ -81,16 +82,16 @@ export default function App() {
       <div ref={scrollArea} onScroll={onScroll}>
         <div style={{ height: `${state.pages * 100}vh` }} />
       </div>
-    </Container>
+    </Layout>
   )
 }
 
 
-const Container = styled.div`
-  margin: 3rem auto;
-  max-width: 600px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`
+// const Container = styled.div`
+//   margin: 0;
+//   max-width: 600px;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+// `
