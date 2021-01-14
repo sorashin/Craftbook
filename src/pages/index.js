@@ -52,7 +52,7 @@ function Stripe() {
 
 export default function App() {
   const scrollArea = useRef()
-  const onScroll = (e: { target: any }) => (state.top.current = e.target.scrollTop)
+  const onScroll = (e) => (state.top.current = e.target.scrollTop)
   useEffect(() => void onScroll({ target: scrollArea.current }), [])
   return (
     <Container>
