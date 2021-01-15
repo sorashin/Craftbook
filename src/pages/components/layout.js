@@ -444,6 +444,44 @@ template {
 [hidden] {
   display: none;
 }
+
+/* =============================================== */
+/* カスタムCSS */
+/* =============================================== */
+@import url("https://fonts.googleapis.com/css?family=News+Cycle&display=swap");
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #ffffff;
+  color: #606063;
+  overflow: hidden;
+  font-family: "News Cycle", sans-serif;
+}
+
+.scrollArea {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+}
+
+/* canvas {
+  position: absolute;
+} */
+#___gatsby {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+#gatsby-focus-wrapper{
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
 `
 export default function Layout({ children }) {
   return (

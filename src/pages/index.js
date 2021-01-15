@@ -79,19 +79,9 @@ export default function App() {
           </Content>
         </Block>
       </Canvas>
-      <div ref={scrollArea} onScroll={onScroll}>
+      <div className="scrollArea" ref={scrollArea} onScroll={onScroll}>
         <div style={{ height: `${state.pages * 100}vh` }} />
       </div>
     </Layout>
   )
 }
-
-
-// const Container = styled.div`
-//   margin: 0;
-//   max-width: 600px;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center;
-// `
