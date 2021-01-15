@@ -1,10 +1,10 @@
 import React, { Suspense, useRef, useEffect } from "react"
 import styled from "styled-components"
 import lerp from "lerp"
-import { Canvas, Dom, useFrame } from "react-three-fiber"
-import { Block, useBlock } from "./components/blocks"
-import state from "./data/store"
-import Layout from "./components/layout"
+import { Canvas, Dom, useFrame, useLoader } from "react-three-fiber"
+import { Block, useBlock } from "../components/blocks"
+import state from "../data/store"
+import Layout from "../components/layout"
 
 function Plane({ color = "white", ...props }) {
   return (
@@ -62,6 +62,38 @@ function Startup() {
   )
 }
 
+function Pages(){
+  // const textures = useLoader(TextureLoader, state.images)
+  // const [img1, img2, img3] = textures.map(texture => ((texture.minFilter = LinearFilter), texture))
+  // const { contentMaxWidth, mobile } = useBlock()
+  // const aspect = 1.75
+  // const pixelWidth = contentMaxWidth * state.zoom
+  return(
+    <>
+      {/* First section */}
+      <Block factor={1.5} offset={0}>
+        <Content left />
+      </Block>
+      {/* Second section */}
+      <Block factor={2.0} offset={1}>
+        <Content />
+      </Block>
+      {/* Stripe */}
+      <Block factor={-1.0} offset={1}>
+        <Stripe />
+      </Block>
+      {/* Last section */}
+      <Block factor={1.5} offset={2}>
+        <Content left>
+          <Block factor={-0.5}>
+            <Cross />
+          </Block>
+        </Content>
+      </Block>
+    </>
+  )
+}
+
 export default function App() {
   const scrollArea = useRef()
   const onScroll = (e) => (state.top.current = e.target.scrollTop)
@@ -70,26 +102,7 @@ export default function App() {
     <Layout>
       <Canvas colorManagement={false} orthographic camera={{ zoom: state.zoom, position: [0, 0, 500] }}>
         <Suspense fallback={<Dom center className="loading" children="Loading..." />}>
-          {/* First section */}
-          <Block factor={1.5} offset={0}>
-            <Content left />
-          </Block>
-          {/* Second section */}
-          <Block factor={2.0} offset={1}>
-            <Content />
-          </Block>
-          {/* Stripe */}
-          <Block factor={-1.0} offset={1}>
-            <Stripe />
-          </Block>
-          {/* Last section */}
-          <Block factor={1.5} offset={2}>
-            <Content left>
-              <Block factor={-0.5}>
-                <Cross />
-              </Block>
-            </Content>
-          </Block>
+          <Pages/>
           <Startup />
         </Suspense>
       </Canvas>
