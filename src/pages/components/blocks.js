@@ -10,7 +10,7 @@ function Block({ children, offset, factor, ...props }) {
   const ref = useRef()
   offset = offset !== undefined ? offset : parentOffset
   useFrame(() => {
-    const curY = ref.current.position.y
+    const curY = null ? 0:ref.current.position.y
     const curTop = state.top.current
     ref.current.position.y = lerp(curY, (curTop / state.zoom) * factor, 0.1)
   })
